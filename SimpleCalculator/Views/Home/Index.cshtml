@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Simple Calculator";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div id="calculator">
+    <input id="result" class="form-control" readonly />
+
+    <div class="row">
+        <button class="btn btn-primary" onclick="appendToResult('1')">1</button>
+        <button class="btn btn-primary" onclick="appendToResult('2')">2</button>
+        <button class="btn btn-primary" onclick="appendToResult('3')">3</button>
+        <button class="btn btn-info" onclick="appendOperator('+')">+</button>
+    </div>
+
+    <div class="row">
+        <button class="btn btn-primary" onclick="appendToResult('4')">4</button>
+        <button class="btn btn-primary" onclick="appendToResult('5')">5</button>
+        <button class="btn btn-primary" onclick="appendToResult('6')">6</button>
+        <button class="btn btn-info" onclick="appendOperator('-')">-</button>
+    </div>
+
+    <div class="row">
+        <button class="btn btn-primary" onclick="appendToResult('7')">7</button>
+        <button class="btn btn-primary" onclick="appendToResult('8')">8</button>
+        <button class="btn btn-primary" onclick="appendToResult('9')">9</button>
+        <button class="btn btn-info" onclick="appendOperator('*')">*</button>
+    </div>
+
+    <div class="row">
+        <button class="btn btn-primary" onclick="appendToResult('0')">0</button>
+        <button class="btn btn-info" onclick="appendOperator('/')">/</button>
+        <button class="btn btn-warning" onclick="calculateResult()">=</button>
+        <button class="btn btn-danger" onclick="clearScreen()">C</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function appendToResult(value) {
+            var resultElement = document.getElementById('result');
+            resultElement.value += value;
+        }
+
+        function appendOperator(operator) {
+            var resultElement = document.getElementById('result');
+            resultElement.value += operator;
+        }
+
+        function calculateResult() {
+            var resultElement = document.getElementById('result');
+            resultElement.value = eval(resultElement.value);
+        }
+
+        function clearScreen() {
+            var resultElement = document.getElementById('result');
+            resultElement.value = '';
+        }
+    </script>
+}
+
+<style>
+    #calculator {
+        max-width: 300px;
+        margin: 0 auto;
+        background-color: #f3f3f3;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+        font-size: 1.5em;
+    }
+
+    .btn-light {
+        background-color: #f8f9fa;
+        color: #000;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        color: #000;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .input-group-text {
+        font-size: 1.5em;
+    }
+
+    .form-control {
+        font-size: 2em;
+        height: 80px;
+    }
+
+    .row {
+        margin-bottom: 5px;
+    }
+</style>
